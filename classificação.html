@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+	<title>Classificação de Notas</title>
+</head>
+
+<body>
+	<h1>Classificação de Notas</h1>
+	<p>Valor Total:
+		<input type="radio" id="tot2" name="totais" value="2" checked>
+		<label for="tot2">2,0</label>
+		<input type="radio" id="tot3" name="totais" value="3">
+		<label for="tot2">3,0</label>
+		<input type="radio" id="tot5" name="totais" value="5">
+		<label for="tot2">5,0</label>
+	</p>
+	<form>
+		Insira a Nota:
+		<input type="number" id="inNota" step=0.1 min=0 autofocus required>
+		<input type="submit">
+	</form>
+	<h3></h3>
+
+	<script>
+		const form = document.querySelector("form");
+		const saida = document.querySelector("h3");
+		const totais = document.querySelectorAll("input[name=totais]");
+
+		let total;
+		let A = B = C = D = E = 0;
+		const notas = [];
+		let notasAzuis = 0;
+		let notasVermelhas =0
+
+		form.addEventListener("submit", calcular);
+
+		function calcular(e) {
+			e.preventDefault();
+			let nota = form.inNota.value;
+
+			if (totais[0].checked) {
+				total = 2;
+			} else if (totais[1].checked) {
+				total = 3;
+			} else {
+				total = 5;
+			}
+
+			nota = 100 * nota / total;
+			console.log(nota, total);
+
+			if (nota >= 50) {
+				notasAzuis++;
+			} else {
+				notasVermelhas++;
+			}
+
+			switch (Math.floor(nota / 10)) {
+				case 10:
+					A++;
+					notas.push(nota);
+					break;
+				case 9:
+				case 8:
+				case 7:
+					B++;
+					notas.push(nota);
+					break;
+				case 6:
+				case 5:
+				case 4:
+					C++;
+					notas.push(nota);
+					break;
+				case 3:
+				case 2:
+				case 1:
+					D++;
+					notas.push(nota);
+					break;
+				case 0:
+					E++;
+					notas.push(nota);
+					break;
+				default:
+					alert("Valor fora dos limites.");
+			}
+
+			saida.innerText = `Perfeito (${total}): ${A}\n`;
+			saida.innerText += `Bom (${limite(70)} a ${limite(99)}): ${B}\n`;
+			saida.innerText += `Regular (${limite(40)} a ${limite(69)}): ${C}\n`;
+			saida.innerText += `Ruim (${limite(10)} a ${limite(39)}): ${D}\n`;
+			saida.innerText += `Péssimo (${limite(0)} a ${limite(9)}): ${E}\n`;
+			saida.innerText += `Total: ${A + B + C + D + E}\n`;
+
+			let med = media(notas, notas.length);
+			let classificacao;
+
+			switch (Math.floor(med / 10)) {
+				case 10:
+					classificacao = "Perfeito";
+					break;
+				case 9:
+					classificacao = "Bom Alto";
+					break;
+				case 8:
+					classificacao = "Bom Médio";
+					break;
+				case 7:
+					classificacao = "Bom Baixo";
+					break;
+				case 6:
+					classificacao = "Regular Alto";
+					break;
+				case 5:
+					classificacao = "Regular Médio";
+					break;
+				case 4:
+					classificacao = "Regular Baixo";
+					break;
+				case 3:
+					classificacao = "Ruim Alto";
+					break;
+				case 2:
+					classificacao = "Ruim médio";
+					break;
+				case 1:
+					classificacao = "Ruim Baixo";
+					break;
+				case 0:
+					classificacao = "Sem Capacidade";
+					break;
+				default:
+					alert("Valor fora dos limites.");
+			}
+			saida.innerText += `\nNotas Azuis = ` + notasAzuis + `\n`;
+			saida.innerText += `Notas Vermelhas = ` + notasVermelhas + `\n`;
+			saida.innerText += `\nClassificação Geral = ` + med.toFixed(0) + ` (` + classificacao + `)`;
+			
+			form.reset();
+			form.inNota.focus();
+		}
+
+		function media(vetor, n) {
+			let soma = 0;
+
+			for (let i = 0; i < n; i++) {
+				soma += vetor[i];
+			}
+
+			return soma / n;
+		}
+
+		function limite(n) {
+			notaLimite = n * total / 100;
+			notaLimite *= 10;
+			notaLimite -= notaLimite % 1;
+			notaLimite /= 10;
+			return notaLimite.toFixed(1);
+		}
+
+		/*function variancia(vetor, n) {
+			let m = media(vetor, n);
+			let d2 = 0;
+
+			for (let i = 0; i < n; i++) {
+				d2 += (vetor[i] - m) * (vetor[i] - m);
+			}
+
+			return d2 / n;
+		}*/
+	</script>
+</body>
+<html>

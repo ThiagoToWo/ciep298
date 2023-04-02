@@ -1,0 +1,105 @@
+<h1>Pesquisa de Opinião</h1>
+<h2>Resultados</h2>
+		<pre></pre>
+<h2>Perguntas</h2>
+		<h3>1. Do que você mais gosta na escola?</h3>
+		<p>(a) De aprender coisas que me ajudam a entender melhor o mundo.
+		<p>(b) De conviver com os outros alunos e/ou com os professores.
+		<p>(c) De poder expressar minhas ideias e pontos de vista.
+		<p>(d) Outros. Quais?
+		<h3>2. O que você gosta de aprender?</h3>
+		<p>(a) As matérias de todas as disciplinas.
+		<p>(b) As matérias de algumas disciplinas. Quais?
+		<p>(c) Temas que não se referem às disciplinas especificamente. Quais?
+		<p>(d) Coisas diversas que os colegas ensinam. O quê?
+		<h3>3. Como você aprende mais, normalmente?</h3>
+		<p>(a) Prestando atenção nas explicações do professor e anotando os pontos principais.
+		<p>(b) Estudando sozinho, consultando as anotações e os livros das disciplinas.
+		<p>(c) Estudando com colegas (trocando conhecimentos, discutindo os conteúdos etc.).
+		<p>(d) De outros jeitos. Quais?
+		<h3>4. Quando você tem alguma dúvida:</h3>
+		<p>(a) Faz pesquisas em dicionários, na internet e pede ajuda aos colegas e ao professor?
+		<p>(b) Pergunta para os colegas?
+		<p>(c) Não se preocupa em pesquisar ou perguntar?
+		<p>(d) Não sabe dizer no que tem dúvida?
+		<h3>5. Em que você tem mais dificuldade na escola?</h3>
+		<p>(a) Aprender os conteúdos de todas ou de algumas disciplinas. Quais?
+		<p>(b) Esclarecer dúvidas sobre aquilo que aprendi. Por que motivos?
+		<p>(c) Organizar uma rotina de estudos, seja individualmente ou em grupos?
+		<p>(d) Outras. Quais?		
+
+<script>
+	const data = [
+		[/*nem1001*/
+			"aaaadbbaabaaaaaaaababaa",
+			"abaabbaababbabababaaaaa",
+			"abaaabcaadbbabcaaaacaaca",
+			"aaaacbaaadaaddadabaddba",
+			"acccbccaaaaacaacaacccac"
+		],
+
+		[/*cn1*/
+			"bbaababcadbcccbcaaaaaaaaaca",
+			"abbaabbaabaaabbaabaabaabbba",
+			"acaaaaabbbcbacbdabccadaaaab",
+			"aacaaaabacabaaaaacaaaaaadaa",
+			"bbcccaaaaaaccbcabaabaadaacc"
+		],
+
+		[/*cn2*/
+			"aadbbbbaaabbabc",
+			"abbbbbbbaaaaa",
+			"cbdcacdbaaccaad",
+			"adaaccaaaababaab",
+			"aaacdaccaabcab"
+		],
+
+		[/*cn3*/
+			"aaaababcabbaaababcabcaaba",
+			"aaaaabaabaaaabbab",
+			"cacaacaaaccaacacabcacbaac",
+			"aaaabaadabaaababaaaabd",
+			"aaacaacacacaacbbcab"
+		]
+	]
+
+	const pre = document.querySelector("pre");
+	const resultados = [
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0],
+		[0, 0, 0, 0]
+	];
+
+	for (let i = 0; i < data.length; i++) { /*turma*/
+		for (let j = 0; j < data[i].length; j++) { /*questão*/
+			for (let k = 0; k < data[i][j].length; k++) { /*alternativa*/
+				switch (data[i][j][k]) {
+					case "a":
+						resultados[j][0]++;
+						break;
+					case "b":
+						resultados[j][1]++;
+						break;
+					case "c":
+						resultados[j][2]++;
+						break;
+					case "d":
+						resultados[j][3]++;
+						break;
+				}
+			}
+		}
+	}
+	
+	let letra;
+	for (let i = 0; i < resultados.length; i++) {
+		pre.innerText += `Questão ${i + 1}:\n`;
+		for (let j = 0; j < resultados[i].length; j++) {
+			letra = String.fromCharCode(("a".charCodeAt(0) + j));				
+			pre.innerText += `\t(${letra}) = ${resultados[i][j]}\n`;
+		}
+		pre.innerText += "\n";
+	}
+</script>

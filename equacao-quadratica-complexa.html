@@ -1,0 +1,23 @@
+<pre></pre>
+<script>
+function gerarQuadraticaComplexa(x, y) {
+	const a = 1;
+	const b = - 2 * x;
+	const c = x * x + y * y;
+	const d = b * b - 4 * a * c;
+
+	return [a, b, c, d];
+}
+
+const pre = document.querySelector("pre");
+let resultado = "";
+
+for (let x = -10; x <= 10; x++) {
+	for (let y = -10; y <= 10; y++) {
+		const eqc = gerarQuadraticaComplexa(x, y);
+		resultado = `${resultado}x² ${eqc[1] < 0 ? " - " : " + "} ${Math.abs(eqc[1])}x + ${eqc[2]} = 0;\tΔ = ${eqc[3]};\t z = ${x} ± ${Math.abs(y)}i\n`;
+	}
+}
+
+pre.innerText = resultado;
+</script>

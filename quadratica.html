@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<h1>Função Quadrática</h1>
+<script>
+const a = Number(prompt("a = "));
+const b = Number(prompt("b = "));
+const c = Number(prompt("c = "));
+
+document.write(`ax² + bx + c = 0<br>`);
+document.write(`${a}x² ${b < 0 ? "-" : "+"} ${Math.abs(b)}x ${c < 0 ? "-" : "+"} ${Math.abs(c)} = 0<br><br>`);
+document.write(`a = ${a}<br>`);
+document.write(`b = ${b}<br>`);
+document.write(`c = ${c}<br><br>`);
+
+const d = b * b - 4 * a * c;
+document.write(`&#916; = b² - 4 . a . c<br>`);
+document.write(`&#916; = (${b})² - 4 . (${a}) . (${c})<br>`);
+document.write(`&#916; = ${b * b} - (${4 * a * c})<br>`);
+document.write(`&#916; = ${d}<br><br>`);
+
+if (d < 0) {
+	document.write("Não existe solução real");
+} else {
+	const x1 = (-b + Math.sqrt(d)) / (2 * a);
+	const x2 = (-b - Math.sqrt(d)) / (2 * a);
+
+	document.write(`x = (-b &plusmn; &radic;&#916;) / (2 . a)<br>`);
+	document.write(`x = [-(${b}) &plusmn; &radic;${d}] / [2 . (${a})]<br>`);
+	document.write(`x = [-(${b}) &plusmn; ${Math.sqrt(d)}] / [${2 * a}]<br><br>`);
+	
+	document.write(`x' = [-(${b}) + ${Math.sqrt(d)}] / [${2 * a}]<br>`);
+	document.write(`x' = ${-b + Math.sqrt(d)} / ${2 * a}<br>`);
+	document.write(`x' = ${x1}<br><br>`);
+	
+	document.write(`x'' = [-(${b}) - ${Math.sqrt(d)}] / [${2 * a}]<br>`);
+	document.write(`x'' = ${-b - Math.sqrt(d)} / ${2 * a}<br>`);
+	document.write(`x'' = ${x2}<br><br>`);
+}
+</script>
