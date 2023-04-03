@@ -15,6 +15,8 @@
 		<label for="tot2">3,0</label>
 		<input type="radio" id="tot5" name="totais" value="5">
 		<label for="tot2">5,0</label>
+		<input type="radio" id="tot10" name="totais" value="10">
+		<label for="tot2">10</label>
 	</p>
 	<form>
 		Insira a Nota:
@@ -44,8 +46,10 @@
 				total = 2;
 			} else if (totais[1].checked) {
 				total = 3;
-			} else {
+			} else if (totais[2].checked) {
 				total = 5;
+			} else {
+				total = 10;
 			}
 
 			nota = 100 * nota / total;
@@ -86,6 +90,7 @@
 					break;
 				default:
 					alert("Valor fora dos limites.");
+					notasAzuis--;
 			}
 
 			saida.innerText = `Perfeito (${total}): ${A}\n`;
