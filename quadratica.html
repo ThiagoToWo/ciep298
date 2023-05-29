@@ -54,7 +54,8 @@
 			const b = Number(form.b.value);
 			const c = Number(form.c.value);
 			let calculos = "";
-			const barra = "&mdash;".repeat(15);
+			const barraLonga = "&mdash;".repeat(15);
+			const barraCurta = "&mdash;".repeat(7);
 
 			calculos += `ax² + bx + c = 0<br>`;
 			calculos += `${a}x² ${b < 0 ? "-" : "+"} ${Math.abs(b)}x ${c < 0 ? "-" : "+"} ${Math.abs(c)} = 0<br><br>`;
@@ -70,6 +71,27 @@
 
 			if (d < 0) {
 				calculos += "Não existe solução real";
+			} else if (d == 0) {
+				const x = -b / (2 * a);
+
+				calculos += `    -b &plusmn; &radic;&#916;<br>`;
+				calculos += `x = ${'&mdash;'.repeat(8)}<br>`;
+				calculos += `     2 . a<br><br>`;
+
+				calculos += `      -(${b}) &plusmn; &radic;${d}<br>`;
+				calculos += `x = ${barraLonga}<br>`;
+				calculos += `        2 . (${a})<br><br>`;
+				calculos += `      -(${b}) &plusmn; ${Math.sqrt(d)}<br>`;
+				calculos += `x = ${barraLonga}<br>`;
+				calculos += `           ${2 * a}<br><br>`;
+
+				calculos += "<hr>";
+
+				
+				calculos += `             ${-b + Math.sqrt(d)}<br>`;
+				calculos += `x' = x" = ${barraCurta}<br>`;
+				calculos += `             ${2 * a}<br><br>`;
+				calculos += `x' = x" = ${x}<br><br>`;
 			} else {
 				const x1 = (-b + Math.sqrt(d)) / (2 * a);
 				const x2 = (-b - Math.sqrt(d)) / (2 * a);
@@ -79,30 +101,30 @@
 				calculos += `     2 . a<br><br>`;
 
 				calculos += `      -(${b}) &plusmn; &radic;${d}<br>`;
-				calculos += `x = ${barra}<br>`;
+				calculos += `x = ${barraLonga}<br>`;
 				calculos += `        2 . (${a})<br><br>`;
 				calculos += `      -(${b}) &plusmn; ${Math.sqrt(d)}<br>`;
-				calculos += `x = ${barra}<br>`;
+				calculos += `x = ${barraLonga}<br>`;
 				calculos += `           ${2 * a}<br><br>`;
 
 				calculos += "<hr>";
 
 				calculos += `       -(${b}) + ${Math.sqrt(d)}<br>`;
-				calculos += `x' = ${barra}<br>`;
+				calculos += `x' = ${barraLonga}<br>`;
 				calculos += `            ${2 * a}<br><br>`;
-				calculos += `            ${-b + Math.sqrt(d)}<br>`;
-				calculos += `x' = ${barra}<br>`;
-				calculos += `            ${2 * a}<br><br>`;
+				calculos += `        ${-b + Math.sqrt(d)}<br>`;
+				calculos += `x' = ${barraCurta}<br>`;
+				calculos += `        ${2 * a}<br><br>`;
 				calculos += `x' = ${x1}<br><br>`;
 
 				calculos += "<hr>";
 
 				calculos += `       -(${b}) - ${Math.sqrt(d)}<br>`;
-				calculos += `x" = ${barra}<br>`;
+				calculos += `x" = ${barraLonga}<br>`;
 				calculos += `            ${2 * a}<br><br>`;
-				calculos += `            ${-b - Math.sqrt(d)}<br>`;
-				calculos += `x" = ${barra}<br>`;
-				calculos += `            ${2 * a}<br><br>`;
+				calculos += `        ${-b - Math.sqrt(d)}<br>`;
+				calculos += `x" = ${barraCurta}<br>`;
+				calculos += `        ${2 * a}<br><br>`;
 				calculos += `x" = ${x2}<br><br>`;
 			}
 
