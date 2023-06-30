@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma de Notas</title>
+</head>
+
+<body>
+    <h1>Soma de Notas</h1>
+    <form>
+        <p>Teve recuperação?
+            <label for="rdComRec">Sim</label>
+            <input type="radio" name="comRec" id="rdComRec" checked autofocus>
+            <label for="rdSemRec">Não</label>
+            <input type="radio" name="comRec" id="rdSemRec">
+        </p>
+
+        <p>1º instrumento:
+            <input type="number" id="inInst1" min="0" max="10" step="0.1" autofocus required>
+        </p>
+        <p>Rec. 1º instrumento:
+            <input type="number" id="inRec1" min="0" max="10" step="0.1" required>
+        </p>
+        <p>2º instrumento:
+            <input type="number" id="inInst2" min="0" max="10" step="0.1" required>
+        </p>
+        <p>Rec. 2º instrumento:
+            <input type="number" id="inRec2" min="0" max="10" step="0.1" required>
+        </p>
+        <p>3º instrumento:
+            <input type="number" id="inInst3" min="0" max="10" step="0.1" required>
+        </p>
+        <p>Rec. 3º instrumento:
+            <input type="number" id="inRec3" min="0" max="10" step="0.1" required>
+        </p>
+
+        <input type="submit" value="Calcular">
+    </form>
+
+    <pre></pre>
+
+    <script>
+        const form = document.querySelector("form");
+        const somatorios = document.querySelector("pre");
+        const teveRec = document.querySelectorAll("input[name=comRec]");
+
+        teveRec[0].addEventListener("change", () => {
+            if (teveRec[0].checked) {
+                form.inRec1.disabled = false;
+                form.inRec2.disabled = false;
+                form.inRec3.disabled = false;
+            }
+        });
+
+        teveRec[1].addEventListener("change", () => {
+            if (teveRec[1].checked) {
+                form.inRec1.disabled = true;
+                form.inRec2.disabled = true;
+                form.inRec3.disabled = true;
+            }
+        });
+
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const inst1 = Number(form.inInst1.value);
+            const rec1 = Number(form.inRec1.value);
+            const inst2 = Number(form.inInst2.value);
+            const rec2 = Number(form.inRec2.value);
+            const inst3 = Number(form.inInst3.value);
+            const rec3 = Number(form.inRec3.value);
+
+            const somaAntes = inst1 + inst2 + inst3;
+            const depois1 = (rec1 > inst1 ? rec1 : inst1);
+            const depois2 = (rec2 > inst2 ? rec2 : inst2);
+            const depois3 = (rec3 > inst3 ? rec3 : inst3);
+            const somaDepois = depois1 + depois2 + depois3;
+
+            somatorios.innerText += `Antes....: ${inst1.toFixed(1)} + ${inst2.toFixed(1)} + ${inst3.toFixed(1)} = ${somaAntes.toFixed(1)}\nDepois...: ${depois1.toFixed(1)} + ${depois2.toFixed(1)} + ${depois3.toFixed(1)} = ${somaDepois.toFixed(1)}\n\n`;
+
+            form.inInst1.value = "";
+            form.inRec1.value = "";
+            form.inInst2.value = "";
+            form.inRec2.value = "";
+            form.inInst3.value = "";
+            form.inRec3.value = "";
+            form.inInst1.focus();
+        });
+    </script>
+</body>
+
+</html>
