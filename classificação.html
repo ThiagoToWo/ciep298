@@ -33,15 +33,17 @@
 
 		let total;
 		let A = B = C = D = E = 0;
-		const notas = [];
+		const niveis = [];
 		let notasAzuis = 0;
-		let notasVermelhas =0
+		let notasVermelhas = 0;
+		let notaMaxima = 0;
+		let notaMinima = Infinity;
 
 		form.addEventListener("submit", calcular);
 
 		function calcular(e) {
 			e.preventDefault();
-			let nota = form.inNota.value;
+			let nota = Number(form.inNota.value);
 
 			if (totais[0].checked) {
 				total = 2;
@@ -53,41 +55,49 @@
 				total = 10;
 			}
 
-			nota = 100 * nota / total;
-			console.log(nota, total);
+			const nivel = 100 * nota / total;
+			console.log(nivel, total);
 
-			if (nota >= 50) {
+			if (nivel >= 50) {
 				notasAzuis++;
 			} else {
 				notasVermelhas++;
 			}
 
-			switch (Math.floor(nota / 10)) {
+			if (nota > notaMaxima) {
+				notaMaxima = nota;
+			}
+
+			if (nota < notaMinima) {
+				notaMinima = nota;
+			}
+
+			switch (Math.floor(nivel / 10)) {
 				case 10:
 					A++;
-					notas.push(nota);
+					niveis.push(nivel);
 					break;
 				case 9:
 				case 8:
 				case 7:
 					B++;
-					notas.push(nota);
+					niveis.push(nivel);
 					break;
 				case 6:
 				case 5:
 				case 4:
 					C++;
-					notas.push(nota);
+					niveis.push(nivel);
 					break;
 				case 3:
 				case 2:
 				case 1:
 					D++;
-					notas.push(nota);
+					niveis.push(nivel);
 					break;
 				case 0:
 					E++;
-					notas.push(nota);
+					niveis.push(nivel);
 					break;
 				default:
 					alert("Valor fora dos limites.");
@@ -101,7 +111,7 @@
 			saida.innerText += `Péssimo (${limite(0)} a ${limite(9)}): ${E}\n`;
 			saida.innerText += `Total: ${A + B + C + D + E}\n`;
 
-			let med = media(notas, notas.length);
+			let med = media(niveis, niveis.length);
 			let classificacao;
 
 			switch (Math.floor(med / 10)) {
@@ -141,9 +151,11 @@
 				default:
 					alert("Valor fora dos limites.");
 			}
-			saida.innerText += `\nNotas Azuis = ` + notasAzuis + `\n`;
-			saida.innerText += `Notas Vermelhas = ` + notasVermelhas + `\n`;
-			saida.innerText += `\nClassificação Geral = ` + med.toFixed(0) + ` (` + classificacao + `)`;
+			saida.innerText += `\nNotas Azuis = ${notasAzuis}\n`;
+			saida.innerText += `Notas Vermelhas = ${notasVermelhas}\n`;
+			saida.innerText += `\nMaior Nota = ${notaMaxima}\n`;
+			saida.innerText += `Menor Nota = ${notaMinima}\n`;
+			saida.innerText += `\nClassificação Geral = ${med.toFixed(0)} (${classificacao})`;
 			
 			form.reset();
 			form.inNota.focus();
