@@ -58,20 +58,6 @@
 			const nivel = 100 * nota / total;
 			console.log(nivel, total);
 
-			if (nivel >= 50) {
-				notasAzuis++;
-			} else {
-				notasVermelhas++;
-			}
-
-			if (nota > notaMaxima) {
-				notaMaxima = nota;
-			}
-
-			if (nota < notaMinima) {
-				notaMinima = nota;
-			}
-
 			switch (Math.floor(nivel / 10)) {
 				case 10:
 					A++;
@@ -101,15 +87,31 @@
 					break;
 				default:
 					alert("Valor fora dos limites.");
-					notasAzuis--;
+					return;
 			}
+
+			if (nivel >= 50) {
+				notasAzuis++;
+			} else {
+				notasVermelhas++;
+			}
+
+			if (nota > notaMaxima) {
+				notaMaxima = nota;
+			}
+
+			if (nota < notaMinima) {
+				notaMinima = nota;
+			}
+
+			const totalAlunos = A + B + C + D + E;
 
 			saida.innerText = `Perfeito (${total}): ${A}\n`;
 			saida.innerText += `Bom (${limite(70)} a ${limite(99)}): ${B}\n`;
 			saida.innerText += `Regular (${limite(40)} a ${limite(69)}): ${C}\n`;
 			saida.innerText += `Ruim (${limite(10)} a ${limite(39)}): ${D}\n`;
 			saida.innerText += `Péssimo (${limite(0)} a ${limite(9)}): ${E}\n`;
-			saida.innerText += `Total: ${A + B + C + D + E}\n`;
+			saida.innerText += `Total: ${totalAlunos}\n`;
 
 			let med = media(niveis, niveis.length);
 			let classificacao;
@@ -148,11 +150,10 @@
 				case 0:
 					classificacao = "Sem Capacidade";
 					break;
-				default:
-					alert("Valor fora dos limites.");
 			}
-			saida.innerText += `\nNotas Azuis = ${notasAzuis}\n`;
-			saida.innerText += `Notas Vermelhas = ${notasVermelhas}\n`;
+			
+			saida.innerText += `\nNotas Azuis = ${notasAzuis} (${(100 * notasAzuis / totalAlunos).toFixed()}%)\n`;
+			saida.innerText += `Notas Vermelhas = ${notasVermelhas} (${(100 * notasVermelhas / totalAlunos).toFixed()}%)\n`;
 			saida.innerText += `\nMaior Nota = ${notaMaxima}\n`;
 			saida.innerText += `Menor Nota = ${notaMinima}\n`;
 			saida.innerText += `\nClassificação Geral = ${med.toFixed(0)} (${classificacao})`;
