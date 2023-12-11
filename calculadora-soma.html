@@ -18,7 +18,7 @@
 		<input type="number" id="parcela" placeholder="Entre com a parcela" autofocus required>
 		<input type="submit" value="Somar">
 	</form>	
-	<button id="limpar">Limpar</button>
+	<button id="limpar">Limpar (L)</button>
 	<pre></pre>
 <div>
 <script>
@@ -56,6 +56,10 @@ btLimpar.addEventListener("click", function() {
 	saida.innerText = "";
 	form.parcela.value = "";
 	form.parcela.focus();
+});
+
+window.addEventListener("keydown", function(e) {
+	if (e.key == "l") btLimpar.click();
 });
 </script>
 </body>
