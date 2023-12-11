@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Título</title>
+	<style>
+	</style>
+</head>
+
+<body>
+	<h1>Funções Quadráticas</h1>
+	<pre>
+
+	<script>
+		const pre = document.querySelector("pre");
+		let d, x1, x2, xv, yv;
+		let infos = "";
+
+		for (let a = -10; a <= 10; a++) {
+			for (let b = -10; b <= 10; b++) {
+				for (let c = -10; c <= 10; c++) {
+					d = b * b - 4 * a * c;
+					xv = -b / (2 * a);
+					yv = -d / (4 * a);
+					if (d > 0) {
+						x1 = (-b + Math.sqrt(d)) / (2 * a);
+						x2 = (-b - Math.sqrt(d)) / (2 * a);
+					}					
+					
+					infos += `y = ${a}x² ${b > 0 ? " + " : " - "} ${Math.abs(b)}x ${c > 0 ? " + " : " - "} ${Math.abs(c)}\n\tΔ = ${d}\tx1 = ${x1 != undefined ? x1.toFixed(3) : ""}\tx2 = ${x2 != undefined ? x2.toFixed(3) : ""}\txv = ${xv.toFixed(3)}\tyv = ${yv.toFixed(3)}\n\n`;
+				}
+			}
+		}
+
+		pre.innerText = infos;
+
+		function gerarEquacao(a, b, c) {
+			const infos = {};
+
+			infos.a = a;
+			infos.b = b;
+			infos.c = c;
+			infos.d = b * b - 4 * a * c;
+			infos.xv = -b / (2 * a);
+			infos.yv = -infos.d / (4 * a);
+			infos.x1 = (-b + Math.sqrt(infos.d)) / (2 * a);
+			infos.x2 = (-b - Math.sqrt(infos.d)) / (2 * a);
+
+			return infos;
+		}
+
+		function imprimirInfos(e, element) {
+			element.innerText += `${e.a}x² ${e.b > 0 ? " + " : " - "} ${Math.abs(e.b)}x ${e.c > 0 ? " + " : " - "} ${Math.abs(e.c)}\n\tΔ = ${e.d}\tx1 = ${e.x1}\tx2 = ${e.x2}\txv = ${e.xv}\tyv = ${e.yv}\n`;
+		}
+	</script>
+</body>
+<html>
