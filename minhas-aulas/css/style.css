@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-a {
+section a {
     display: block;
     margin-bottom: 5px;
     padding: 2px 0 5px 0;
@@ -10,6 +10,10 @@ a {
     text-align: center;
     text-decoration: none;
     color: #fff;
+}
+
+header a {
+    text-decoration: none;
 }
 
 .blue {    
