@@ -256,7 +256,7 @@
                     <div class="divisoria">
                         <p>
                             <b>4) Senha.</b> As senhas de um banco são compostas por seis dígitos de 0 a 9 com a única restrição
-                            de que não possar ser todos iguais. Se alguém tentar adivinhar a senha de uma pessoa levando cinco
+                            de que não devam ser todos iguais. Se alguém tentar adivinhar a senha de uma pessoa levando cinco
                             segundos para testar cada uma, qual o tempo máximo que levaria?
                         </p>
                         <p>
@@ -302,6 +302,103 @@
                     <div class="divisoria">                        
                         <p>
                             Fazer exercício 14 da lista.
+                        </p>
+                    </div>
+                </div>                
+                <h2>Aula 5</h2>
+                <div class="quadro">
+                    <div class="divisoria">
+                        <h1>* <u>Agrupamentos Simples</u></h1>                   
+                        <ol>
+                            <li>
+                                Sequência (Importa a ordem)<br>
+                                (números, palavras, filas, pilhas, classificações, hierarquia, etc.)
+                                <ol>
+                                    <li>
+                                        Com todos os elementos.
+                                        <ul>
+                                            <li>Permutação</li>
+                                            <li>n: total de elementos</li>
+                                            <li>P<sub>n</sub> = n!</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        Com parte dos elementos.
+                                        <ul>
+                                            <li>Arranjo</li>
+                                            <li>n: total de elementos</li>
+                                            <li>p: parte utilizada</li>
+                                            <li>A<sub>n, p</sub> = n!/(n - p)!</li>
+                                        </ul>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li>
+                                Grupo (Não importa a ordem)<br>
+                                (times, conjuntos, comissões, equipes, etc.)
+                                <ul>
+                                    <li>Combinação</li>
+                                    <li>n: total de elementos</li>
+                                    <li>p: parte utilizada</li>
+                                    <li>C<sub>n, p</sub> = n!/[p!(n - p)!]</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="divisoria">
+                        <h3>Exemplos</h3>
+                        <p>
+                            <b>1)</b> Dado as letras ABCD, calcule e liste<br>
+                            <p>
+                                <b>a)</b> A quantidade de permutações possíveis.<br>
+                                P<sub>4</sub> = 4! = 4 &middot; 3 &middot; 2 &middot; 1 = 24<br>
+                                ABCD &nbsp; ACDB &nbsp; ADBC &nbsp; ABDC &nbsp; ACBD &nbsp; ADCB<br>
+                                BCDA &nbsp; BDAC &nbsp; BACD &nbsp; BADC &nbsp; BCAD &nbsp; BDCA<br>
+                                CDAB &nbsp; CABD &nbsp; CBDA &nbsp; CADB &nbsp; CBAD &nbsp; CDBA<br>
+                                DABC &nbsp; DBCA &nbsp; DCAB &nbsp; DACB &nbsp; DBAC &nbsp; DCBA
+                            </p>
+                            <p>
+                                <b>b)</b> A quantidade de arranjos 2 a 2.<br>
+                                A<sub>4, 2</sub> = 4!/2! = 4 . 3 . 2!/2! = 4 . 3 = 12<br>
+                                AB &nbsp; AC &nbsp; AD<br>
+                                BA &nbsp; BC &nbsp; BD<br>
+                                CA &nbsp; CB &nbsp; CD<br>
+                                DA &nbsp; DB &nbsp; DC<br>
+                            </p>
+                            <p>
+                                <b>b)</b> A quantidade de combinações 2 a 2.<br>
+                                C<sub>4, 2</sub> = 4!/(2!2!) = 4 . 3 . 2!/(2!2!) = 4 . 3 / 2 = 6<br>
+                                AB &nbsp; AC &nbsp; AD &nbsp; BC &nbsp; BD &nbsp; CD &nbsp; DC<br>
+                            </p>
+                        </p>                                              
+                    </div>
+                    <div class="divisoria">
+                        <p>
+                            <b>2)</b> De quantas maneiras é possível enfileirar 7 volumes de um livro numa prateleira?
+                        </p> 
+                        <p>
+                            <b>3)</b> Em um campeonato com 10 participantes, quantas podem ser as classificações
+                            em 1º, 2º e 3º lugar?
+                        </p>
+                        <p>
+                            <b>4)</b> Em uma turma com 20 alunos quantas chapas de 4 alunos podem ser formadas?
+                        </p>                   
+                        <p>
+                            Fazer exercícios 15 a 23 da lista.
+                        </p>
+                        <p>
+                            Prova: __/__/__ (5,0 pontos)<br>
+                        <h3>Matéria:</h3>
+                        <ul>
+                            <li>
+                                Agrupamentos simples
+                                <ul>
+                                    <li>Permutação</li>
+                                    <li>Arranjo</li>
+                                    <li>Combinação</li>
+                                </ul>
+                            </li>
+                        </ul>
                         </p>
                     </div>
                 </div>                
